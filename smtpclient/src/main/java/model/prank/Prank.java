@@ -20,11 +20,11 @@ public class Prank {
     }
 
     public void setReceivers(Group receivers){
-        this.receivers.setGroup(receivers);
+        this.receivers.setGroup(receivers.getMember());
     }
 
     public void setCopyCarbon(Group copyCarbon){
-        this.copyCarbon.setGroup(copyCarbon);
+        this.copyCarbon.setGroup(copyCarbon.getMember());
     }
 
     public void setMessage(String message){
@@ -62,12 +62,12 @@ public class Prank {
         mail.setRcptTo(recptTo);
 
         // Récupère les informations pour le champ qui concerne les copies cachées
-        List<String> copyCarbon = new ArrayList<String>();
+        List<String> cc = new ArrayList<String>();
         List<Person> memberOfCopyCarbon = copyCarbon.getMember();
         for(Person person : memberOfCopyCarbon){
-            copyCarbon.add(person.getEmail());
+            cc.add(person.getEmail());
         }
-        mail.setCopyCarbon(copyCarbon);
+        mail.setCopyCarbon(cc);
 
         mail.setData(message + sender.getLastName() + sender.getFirstName());
 
