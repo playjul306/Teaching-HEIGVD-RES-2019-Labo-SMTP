@@ -17,14 +17,14 @@ public class Group {
     }
 
     public List<Person> getMember(){
-        List<Person> group = new ArrayList<Person>();
-        group.addAll(this.group);
+        //List<Person> group = new ArrayList<Person>();
+        //group.addAll(this.group);
         return group;
     }
 
-    public void setGroup(List<Person> group){
+    public void setGroup(Group newGroup){
         this.group.clear();
-        this.group.addAll(group);
+        this.group.addAll(newGroup.group);
     }
 
 

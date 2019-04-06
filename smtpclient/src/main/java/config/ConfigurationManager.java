@@ -1,4 +1,5 @@
 package config;
 
-public class ConfigurationManager {
+public class ConfigurationManager implements IConfigurationManager {
+
 }
