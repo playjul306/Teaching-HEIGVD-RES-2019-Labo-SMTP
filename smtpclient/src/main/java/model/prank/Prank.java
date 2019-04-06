@@ -20,11 +20,11 @@ public class Prank {
     }
 
     public void setReceivers(Group receivers){
-        this.receivers.setGroup(receivers.getMember());
+        this.receivers.setGroup(receivers);
     }
 
     public void setCopyCarbon(Group copyCarbon){
-        this.copyCarbon.setGroup(copyCarbon.getMember());
+        this.copyCarbon.setGroup(copyCarbon);
     }
 
     public void setMessage(String message){
