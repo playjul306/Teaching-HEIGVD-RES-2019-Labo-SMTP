@@ -26,6 +26,7 @@ public class ConfigurationManager implements IConfigurationManager {
     }
 
     private List<String> loadMessages(String configFilesPath) throws IOException{
+        messages = new ArrayList<String>();
         FileInputStream loadFile = new FileInputStream(configFilesPath + messagesFileName);
         BufferedReader reader = new BufferedReader(new InputStreamReader(loadFile, "UTF-8"));
         String completeMessage = "", line = "";
@@ -42,6 +43,7 @@ public class ConfigurationManager implements IConfigurationManager {
     }
 
     private Group loadVictims(String configFilesPath) throws IOException{
+        victims = new Group();
         FileInputStream loadFile = new FileInputStream(configFilesPath + victimsFileName);
         String line = "";
         BufferedReader reader = new BufferedReader(new InputStreamReader(loadFile, "UTF-8"));
