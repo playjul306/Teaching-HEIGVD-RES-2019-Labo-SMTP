@@ -19,6 +19,7 @@ public interface ISmtpClient {
     String SUBJECT = "Subject:";
     String RETURN = "\r\n";
     String END_MESSAGE = "\r\n.\r\n";
+    String ENCODAGE = "Content-Type: text/plain; charset=utf-8";
 
 
     public void sendMessage(Message message) throws IOException;
