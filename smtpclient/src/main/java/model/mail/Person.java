@@ -13,6 +13,8 @@ public class Person {
         lastName = completeName.substring(completeName.indexOf('.'));
         firstName = completeName.substring(0, completeName.indexOf('.'));
         this.email = email;
+        lastName = lastName.substring(0,1).toUpperCase() + lastName.substring(1);
+        firstName = firstName.substring(0,1).toUpperCase() + firstName.substring(1);
     }
 
     //--------------Getter---------------

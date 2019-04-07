@@ -1,5 +1,6 @@
 package smtp;
 
+import config.IConfigurationManager;
 import model.mail.Message;
 
 import java.io.*;
@@ -23,6 +24,11 @@ public class SmtpClient implements ISmtpClient{
     public SmtpClient(String smtpServerAddress, int smtpServerPort){
         this.smtpServerAddress = smtpServerAddress;
         this.smtpServerPort = smtpServerPort;
+    }
+
+    public SmtpClient(IConfigurationManager configuration){
+        this.smtpServerAddress = configuration.getSmtpServerAdress();
+        this.smtpServerPort = configuration.getSmtpServerPort();
     }
 
     public void sendMessage(Message message) throws IOException{
