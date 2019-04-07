@@ -1,7 +1,5 @@
 package model.prank;
 
-import com.sun.org.apache.bcel.internal.generic.RET;
-import com.sun.org.apache.bcel.internal.generic.RETURN;
 import model.mail.Group;
 import model.mail.Message;
 import model.mail.Person;
