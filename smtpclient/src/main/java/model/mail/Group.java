@@ -18,6 +18,10 @@ public class Group {
         group.add(person);
     }
 
+    public Person removePersons(int index){
+        return getSize() > 0 && index >= 0 && index < getSize() ? group.remove(index) : null;
+    }
+
     public List<Person> getMember(){
         //List<Person> group = new ArrayList<Person>();
         //group.addAll(this.group);
@@ -27,6 +31,10 @@ public class Group {
     public void setGroup(Group newGroup){
         this.group.clear();
         this.group.addAll(newGroup.group);
+    }
+
+    public int getSize(){
+        return group.size();
     }
 
 
