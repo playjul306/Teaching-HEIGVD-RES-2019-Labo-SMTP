@@ -13,6 +13,10 @@ public class ConfigurationManager implements IConfigurationManager {
     private List<String> messages;
     private Group victims;
 
+    public ConfigurationManager() throws IOException {
+        this(defaultConfigPath);
+    }
+
     public ConfigurationManager(String configFilesPath) throws IOException {
         properties = loadProperties(configFilesPath);
         messages = loadMessages(configFilesPath);

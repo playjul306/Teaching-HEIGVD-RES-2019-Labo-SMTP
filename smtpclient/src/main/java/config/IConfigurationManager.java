@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface IConfigurationManager {
 
+    String defaultConfigPath = "../smtpclient/config/";
+
     String field_smtpServerAddress = "smtpServerAddress";
     String field_smtpServerPort = "smtpServerPort";
     String field_numberOfGroups=  "numberOfGroups";
