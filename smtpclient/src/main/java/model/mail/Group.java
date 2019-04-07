@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Group {
-    private List<Person> group = new ArrayList<Person>();
+    private List<Person> group;
 
-    public Group(){}
+    public Group(){
+        group = new ArrayList<Person>();
+    }
 
     public Group(List<Person> person){
         group.addAll(person);
