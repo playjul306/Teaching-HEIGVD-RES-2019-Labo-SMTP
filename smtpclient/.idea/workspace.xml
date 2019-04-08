@@ -3,15 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8e8b2bf3-6ca0-4412-a13e-681bf2de688b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/config/ConfigurationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/config/ConfigurationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/mail/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/mail/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/prank/PrankGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/prank/PrankGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/smtp/ISmtpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/smtp/ISmtpClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/smtp/SmtpClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/smtp/SmtpClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/MailRobot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/MailRobot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/model/mail/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/mail/Person.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/smtp/ISmtpClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/smtp/ISmtpClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/model/prank/PrankGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/model/prank/PrankGenerator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/smtp/SmtpClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/smtp/SmtpClient.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -60,39 +54,39 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="21" />
-          <entry key="properties" value="3" />
+          <entry key="java" value="24" />
+          <entry key="properties" value="4" />
           <entry key="utf8" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="21" />
+          <entry key="JAVA" value="24" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Properties" value="3" />
+          <entry key="Properties" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1108" />
-          <entry key="properties" value="9" />
+          <entry key="java" value="1300" />
+          <entry key="properties" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1108" />
-          <entry key="Properties" value="9" />
+          <entry key="JAVA" value="1300" />
+          <entry key="Properties" value="35" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/model/prank/PrankGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+            <state relative-caret-position="368">
+              <caret line="28" column="136" selection-start-line="28" selection-start-column="136" selection-end-line="28" selection-end-column="136" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#413#414#0" expanded="true" />
@@ -106,15 +100,6 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/config.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/messages.utf8">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
@@ -123,16 +108,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/smtp/SmtpClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="457">
-              <caret line="80" column="26" selection-start-line="80" selection-start-column="26" selection-end-line="80" selection-end-column="26" />
+            <state relative-caret-position="409">
+              <caret line="116" column="23" lean-forward="true" selection-start-line="116" selection-start-column="23" selection-end-line="116" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#548#549#0" expanded="true" />
                 <element signature="e#601#602#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/config.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="27" selection-start-column="27" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -217,12 +211,12 @@
         <option value="$PROJECT_DIR$/src/main/java/model/prank/Prank.java" />
         <option value="$PROJECT_DIR$/src/main/java/smtp/Protocol.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/mail/Group.java" />
-        <option value="$PROJECT_DIR$/config/config.properties" />
         <option value="$PROJECT_DIR$/src/main/java/smtp/ISmtpClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/smtp/SmtpClient.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/mail/Person.java" />
         <option value="$PROJECT_DIR$/src/main/java/config/ConfigurationManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/model/prank/PrankGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/smtp/SmtpClient.java" />
+        <option value="$PROJECT_DIR$/config/config.properties" />
       </list>
     </option>
   </component>
@@ -334,7 +328,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554717351572" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554726429379" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -383,7 +377,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31418000" />
+    <option name="totallyTimeSpent" value="35694000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -522,35 +516,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/smtp/ISmtpClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/smtp/SmtpClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="80" column="26" selection-start-line="80" selection-start-column="26" selection-end-line="80" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#548#549#0" expanded="true" />
-            <element signature="e#601#602#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/config/ConfigurationManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -558,10 +523,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/smtp/ISmtpClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/src.zip!/java/util/Base64.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="313" column="22" selection-start-line="313" selection-start-column="22" selection-end-line="313" selection-end-column="22" />
+          <folding>
+            <element signature="e#2577#2578#0" expanded="true" />
+            <element signature="e#2616#2617#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/prank/PrankGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+        <state relative-caret-position="368">
+          <caret line="28" column="136" selection-start-line="28" selection-start-column="136" selection-end-line="28" selection-end-column="136" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#413#414#0" expanded="true" />
@@ -569,6 +555,25 @@
             <element signature="e#542#549#0" expanded="true" />
             <element signature="e#1859#1866#0" expanded="true" />
             <element signature="e#1920#1927#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="27" selection-start-column="27" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/smtp/SmtpClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="116" column="23" lean-forward="true" selection-start-line="116" selection-start-column="23" selection-end-line="116" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#548#549#0" expanded="true" />
+            <element signature="e#601#602#0" expanded="true" />
           </folding>
         </state>
       </provider>

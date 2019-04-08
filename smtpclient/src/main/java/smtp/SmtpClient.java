@@ -7,6 +7,8 @@ import java.io.*;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Base64;
+
 
 public class SmtpClient implements ISmtpClient{
 
@@ -107,9 +109,11 @@ public class SmtpClient implements ISmtpClient{
 
         LOG.log(Level.INFO, "SUBJECT");
         String[] subjectAndMessage = message.getData().split("\r\n|\r|\n", 2);
-        message.setSubject(subjectAndMessage[0]);
+        if(subjectAndMessage[0].startsWith(SUBJECT))
+            subjectAndMessage[0] = subjectAndMessage[0].substring(SUBJECT.length());
+        message.setSubject("=?utf-8?B?" + Base64.getEncoder().encodeToString(subjectAndMessage[0].getBytes()) + "?=");
         message.setData(subjectAndMessage[1]);
-        writer.print((message.getSubject().startsWith(SUBJECT) ? message.getSubject() : SUBJECT + message.getSubject()) + RETURN);
+        writer.print(SUBJECT + message.getSubject() + RETURN);
         writer.flush();
 
         LOG.log(Level.INFO, "BODY");
