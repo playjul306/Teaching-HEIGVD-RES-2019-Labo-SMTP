@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 public class PrankGenerator {
     private IConfigurationManager config;
     private static final Logger LOG = Logger.getLogger(PrankGenerator.class.getName());
+    private static final int NB_PERSONS_MIN = 3;
 
     public PrankGenerator(IConfigurationManager config){
         this.config = config;
@@ -24,8 +25,8 @@ public class PrankGenerator {
 
         // Permet de réadapter le nombre de groupe en cas de nombre insuffisant de personnes
         if(nbVictims/nbGroups < nbGroups){
-            if(nbVictims/nbGroups < 1){
-                LOG.log(Level.SEVERE, "Attention, nombre de groupe inférieur à 1 dans le fichier de configuration. Veuillez modifier cela");
+            if(nbVictims/nbGroups < NB_PERSONS_MIN){
+                LOG.log(Level.SEVERE, "Attention, nombre de personne par groupe inférieur à {0}. Veuillez modifier cela", NB_PERSONS_MIN);
                 return listOfPranks;
             }
             nbGroups = nbVictims / nbGroups;
@@ -63,11 +64,10 @@ public class PrankGenerator {
             groups.add(new Group());
         }
 
-        int choice = 0;
 
         for(Person pers : listOfPerson){
             Random r = new Random();
-            choice = r.nextInt(groups.size());
+            int choice = r.nextInt(groups.size());
 
             while(groups.get(choice).getSize() >= (listOfPerson.size()/tmpNbGroups)) {
                 listOfGroups.add(groups.get(choice));
@@ -75,16 +75,8 @@ public class PrankGenerator {
                 choice = r.nextInt(groups.size());
             }
             groups.get(choice).addPersons(pers);
-
-            /*if(groups.get(choice).getSize() < (listOfPerson.size()/tmpNbGroups)) {
-                groups.get(choice).addPersons(pers);
-            }
-            else{
-                listOfGroups.add(groups.get(choice));
-                groups.remove(choice);
-            }*/
         }
-        listOfGroups.add(groups.get(choice));
+        listOfGroups.addAll(groups);
 
         return listOfGroups;
     }
