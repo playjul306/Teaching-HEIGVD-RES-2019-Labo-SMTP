@@ -45,11 +45,12 @@ public class SmtpClient implements ISmtpClient{
         writer.flush();
 
         LOG.log(Level.INFO, reader.readLine());
-        String line = reader.readLine();
-        if (!line.startsWith("250")){
-            throw new IOException("Erreur SMTP : " + line);
+
+        if (!reader.readLine().startsWith("250")){
+            throw new IOException("Erreur SMTP : " + reader.readLine());
         }
-        while (line.startsWith("250")){
+        String line;
+        while (!(line = reader.readLine()).startsWith("250 ")){
             LOG.log(Level.INFO, line);
         }
 
@@ -95,7 +96,7 @@ public class SmtpClient implements ISmtpClient{
         writer.flush();
 
         LOG.log(Level.INFO, "CC");
-        writer.print(TO + message.getCopyCarbon().get(0));
+        writer.print(CC + message.getCopyCarbon().get(0));
         for (int i = 1; i < message.getCopyCarbon().size(); ++i){
             writer.print(", " + message.getCopyCarbon().get(i));
         }
@@ -104,11 +105,15 @@ public class SmtpClient implements ISmtpClient{
 
         LOG.info("---------- CORPS ----------");
 
-        LOG.log(Level.INFO, "BODY");
+        LOG.log(Level.INFO, "SUBJECT");
         String[] subjectAndMessage = message.getData().split("\r\n|\r|\n", 2);
         message.setSubject(subjectAndMessage[0]);
         message.setData(subjectAndMessage[1]);
-        writer.print(SUBJECT + message.getSubject() + RETURN);
+        writer.print((message.getSubject().startsWith(SUBJECT) ? message.getSubject() : SUBJECT + message.getSubject()) + RETURN);
+        writer.flush();
+
+        LOG.log(Level.INFO, "BODY");
+        writer.print(RETURN + message.getData() + RETURN);
         writer.flush();
 
         LOG.log(Level.INFO, "END");

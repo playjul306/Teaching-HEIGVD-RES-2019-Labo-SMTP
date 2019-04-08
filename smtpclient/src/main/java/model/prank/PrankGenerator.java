@@ -54,28 +54,37 @@ public class PrankGenerator {
 
     public List<Group> generateGroups(Group victims, int nbGroups){
         List<Group> listOfGroups = new ArrayList<Group>(nbGroups);
+        List<Group> groups = new ArrayList<Group>(nbGroups);
 
         int tmpNbGroups = nbGroups;
         List<Person> listOfPerson = victims.getMember();
 
-        List<Group> groups = new ArrayList<Group>(nbGroups);
         for(int i = 0; i < nbGroups; ++i){
             groups.add(new Group());
         }
 
+        int choice = 0;
+
         for(Person pers : listOfPerson){
             Random r = new Random();
-            int choice = r.nextInt(nbGroups);
+            choice = r.nextInt(groups.size());
 
-            if(groups.get(choice).getSize() < (listOfPerson.size()/tmpNbGroups)) {
+            while(groups.get(choice).getSize() >= (listOfPerson.size()/tmpNbGroups)) {
+                listOfGroups.add(groups.get(choice));
+                groups.remove(choice);
+                choice = r.nextInt(groups.size());
+            }
+            groups.get(choice).addPersons(pers);
+
+            /*if(groups.get(choice).getSize() < (listOfPerson.size()/tmpNbGroups)) {
                 groups.get(choice).addPersons(pers);
             }
             else{
                 listOfGroups.add(groups.get(choice));
                 groups.remove(choice);
-                --nbGroups;
-            }
+            }*/
         }
+        listOfGroups.add(groups.get(choice));
 
         return listOfGroups;
     }
