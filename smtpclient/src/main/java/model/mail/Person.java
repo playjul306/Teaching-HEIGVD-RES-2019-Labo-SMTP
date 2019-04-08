@@ -10,7 +10,7 @@ public class Person {
 
     public Person(String email){
         String completeName = email.substring(0, email.indexOf('@'));
-        lastName = completeName.substring(completeName.indexOf('.'));
+        lastName = completeName.substring(completeName.indexOf('.') + 1);
         lastName = lastName.substring(0,1).toUpperCase() + lastName.substring(1);
         firstName = completeName.substring(0, completeName.indexOf('.'));
         firstName = firstName.substring(0,1).toUpperCase() + firstName.substring(1);

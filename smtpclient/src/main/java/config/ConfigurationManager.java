@@ -37,6 +37,7 @@ public class ConfigurationManager implements IConfigurationManager {
         while((line = reader.readLine()) != null){
             if(line.equals("==")){
                 messages.add(completeMessage);
+                completeMessage = "";
             }else{
                 completeMessage += line + "\r\n";
             }
