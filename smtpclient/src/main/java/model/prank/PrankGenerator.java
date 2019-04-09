@@ -8,6 +8,10 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Cette classe permet de générer des blagues en gérant l'attribution des personnes dans les groupes ainsi que les blagues
+ * pour chaque groupe
+ */
 public class PrankGenerator {
     private IConfigurationManager config;
     private static final Logger LOG = Logger.getLogger(PrankGenerator.class.getName());

@@ -7,6 +7,10 @@ import model.mail.Person;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Cette classe permet d'instancier une blague à l'aide des différents informations comme l'envoyeur, les receveurs,
+ * les copies cachées ou encore le message
+ */
 public class Prank {
 
     private Person sender = new Person();
