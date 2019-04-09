@@ -9,7 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Base64;
 
-
 public class SmtpClient implements ISmtpClient{
 
     private static final Logger LOG = Logger.getLogger(SmtpClient.class.getName());
