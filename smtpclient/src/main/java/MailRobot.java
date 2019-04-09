@@ -5,6 +5,16 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.*;
 
+
+/**
+ * Cette application permet de créer des "pranks" à partir d'un fichier de config afin de les envoyer par email via
+ * un client SMTP.
+ * Ces emails sont envoyés par une "victime" choisie au hasard a un groupe de victimes créé préalablement,
+ * au hasard aussi.
+ *
+ * @author Julien benoit, Volkan Sutcu
+ */
+
 public class MailRobot {
     private static final Logger LOG = Logger.getLogger(MailRobot.class.getName());
 
