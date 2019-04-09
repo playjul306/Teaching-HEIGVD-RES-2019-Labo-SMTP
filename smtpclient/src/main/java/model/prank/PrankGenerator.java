@@ -11,6 +11,8 @@ import java.util.logging.Logger;
 /**
  * Cette classe permet de générer des blagues en gérant l'attribution des personnes dans les groupes ainsi que les blagues
  * pour chaque groupe
+ *
+ * @author Julien benoit, Volkan Sutcu
  */
 public class PrankGenerator {
     private IConfigurationManager config;

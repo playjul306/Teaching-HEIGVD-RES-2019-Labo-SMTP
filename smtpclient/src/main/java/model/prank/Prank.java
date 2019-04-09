@@ -10,6 +10,8 @@ import java.util.List;
 /**
  * Cette classe permet d'instancier une blague à l'aide des différents informations comme l'envoyeur, les receveurs,
  * les copies cachées ou encore le message
+ *
+ * @author Julien benoit, Volkan Sutcu
  */
 public class Prank {
 

@@ -11,6 +11,8 @@ import java.util.Properties;
 /**
  * Cette classe permet d'instancier un objet contenant les fichiers externes fournis et qui seront utilisés lors de
  * l'envoi des mails pour les différentes blagues
+ *
+ * @author Julien benoit, Volkan Sutcu
  */
 public class ConfigurationManager implements IConfigurationManager {
     private Properties properties;
