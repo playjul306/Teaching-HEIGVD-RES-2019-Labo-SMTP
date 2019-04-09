@@ -6,6 +6,10 @@ import java.net.InetAddress;
 
 public interface ISmtpClient {
 
+    /*
+    l'interface contient le port par défaut utilisé, ainsi que toute les commandes utilisées par le client SMTP.
+     */
+
     int DEFAULT_PORT = 25;
 
     String EHLO = "EHLO ";
@@ -21,7 +25,11 @@ public interface ISmtpClient {
     String END_MESSAGE = "\r\n.\r\n";
     String ENCODAGE = "Content-Type: text/plain; charset=utf-8";
 
-
-    public void sendMessage(Message message) throws IOException;
+    /**
+     * permet d'envoyer un email par un socket a un serveur SMTP qui utilise Reader et Writer.
+     * @param message l'email a envoyé au serveur SMTP
+     * @throws IOException si l'on ne peut pas créer de socket ou si le Reader ou le Writer plante.
+     */
+    void sendMessage(Message message) throws IOException;
 
 }

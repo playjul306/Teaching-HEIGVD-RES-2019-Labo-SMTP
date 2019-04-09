@@ -9,6 +9,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Base64;
 
+/**
+ * Classe représentants un client SMTP afin d'envoyer des mail à travers un serveur SMTP.
+ *
+ * @author Julien benoit, Volkan Sutcu
+ */
+
 public class SmtpClient implements ISmtpClient{
 
     private static final Logger LOG = Logger.getLogger(SmtpClient.class.getName());
@@ -18,20 +24,39 @@ public class SmtpClient implements ISmtpClient{
     private PrintWriter writer;
     private BufferedReader reader;
 
+    /**
+     * Constructeur pour un client SMTP dont on ne veut pas spécifier le port et donc utilisé le port par défaut.
+     * On ne spécifie que l'adresse IP.
+     * @param smtpServerAddress l'adresse IP du serveur SMTP
+     */
     public SmtpClient(String smtpServerAddress){
         this(smtpServerAddress, DEFAULT_PORT);
     }
 
+    /**
+     * Constructeur pour un client SMTP dont on donne l'adresse IP et le port du serveur SMTP
+     * @param smtpServerAddress l'adresse IP du serveur SMTP
+     * @param smtpServerPort le port du serveur SMTP
+     */
     public SmtpClient(String smtpServerAddress, int smtpServerPort){
         this.smtpServerAddress = smtpServerAddress;
         this.smtpServerPort = smtpServerPort;
     }
 
+    /**
+     * Constructeur pour un client SMTP plus avancé disposant d'une configuration spécifique
+     * @param configuration la IConfigurationManager permettant de créer un client SMTP
+     */
     public SmtpClient(IConfigurationManager configuration){
         this.smtpServerAddress = configuration.getSmtpServerAdress();
         this.smtpServerPort = configuration.getSmtpServerPort();
     }
 
+    /**
+     * permet d'envoyer un email par un socket a un serveur SMTP qui utilise Reader et Writer.
+     * @param message l'email a envoyé au serveur SMTP
+     * @throws IOException si l'on ne peut pas créer de socket ou si le Reader ou le Writer plante.
+     */
     public void sendMessage(Message message) throws IOException{
         LOG.info("Envoi de mail par SMTP");
 
@@ -79,6 +104,7 @@ public class SmtpClient implements ISmtpClient{
         writer.flush();
         LOG.log(Level.INFO, reader.readLine());
 
+        // set l'encodage défini dans l'interface pour le corps du mail.
         writer.print(ENCODAGE + RETURN);
         writer.flush();
 
@@ -108,8 +134,11 @@ public class SmtpClient implements ISmtpClient{
 
         LOG.log(Level.INFO, "SUBJECT");
         String[] subjectAndMessage = message.getData().split("\r\n|\r|\n", 2);
+        // permet de ne pas avoir deux fois "subject" écrit dans le cas ou le fichier de config des messages
+        // comporterait déjà ce terme au début du message.
         if(subjectAndMessage[0].startsWith(SUBJECT))
             subjectAndMessage[0] = subjectAndMessage[0].substring(SUBJECT.length());
+        // permet d'afficher le sujet avec les bon caractère en UTF-8 (exemple : les accents).
         message.setSubject("=?utf-8?B?" + Base64.getEncoder().encodeToString(subjectAndMessage[0].getBytes()) + "?=");
         message.setData(subjectAndMessage[1]);
         writer.print(SUBJECT + message.getSubject() + RETURN);
