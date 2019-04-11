@@ -1,61 +1,47 @@
-# Teaching-HEIGVD-RES-2019-Labo-SMTP
+## Laboratoire: implémentation d'un serveur SMTP
 
-## Objectives
+Author: Volkan Sutcu, Benoit Julien  
+Date: 11-04-2019
 
-In this lab, you will develop a client application (TCP) in Java. This client application will use the Socket API to communicate with an SMTP server. The code that you write will include a **partial implementation of the SMTP protocol**. These are the objectives of the lab:
+### Information importante pour les manipulations
 
-* Make practical experiments to become familiar with the **SMTP protocol**. After the lab, you should be able to use a command line tool to **communicate with an SMTP server**. You should be able to send well-formed messages to the server, in order to send emails to the address of your choice.
+Ce document permet  à n'importe quel utilisateur de pouvoir mettre en place un serveur de test MockMock ainsi qu'un serveur d'envoi SMTP. En revanche, nous partons du principe que toute personne désirant effectuer l'installation complète possède et maîtrise les environnements Intellij, Github et Docker.
 
-* Understand the notions of **test double** and **mock server**, which are useful when developing and testing a client-server application. During the lab, you will setup and use such a **mock server**.
+De plus, il faut avoir préparé l’environnement de travail au préalable en ayant cloner ou télécharger le dossier GitHub "Teaching-HEIGVD-RES-2019-Labo-SMTP" via le lien Github qui va été fourni. Puis, créez un projet Maven sur la base de ce dernier. 
 
-* Understand what it means to **implement the SMTP protocol** and be able to send e-mail messages, by working directly on top of the Socket API (i.e. you are not allowed to use a SMTP library).
+### Description du laboratoire
 
-* **See how easy it is to send forged e-mails**, which appear to be sent by certain people but in reality are issued by malicious users.
+ Le repo principal du serveur SMTP contient 2 dossiers pour le bon fonctionnement de ce dernier. Tout d'abord, un dossier config contenant un fichier du même nom permettant de configurer le serveur SMTP et 2 autres fichiers allant servir de base pour la construction d'une blague à envoyer à des destinataires.
 
-* **Design a simple object-oriented model** to implement the functional requirements described in the next paragraph.
+Puis, dans un second temps, le dossier "src/main/java" qui contient tous fichiers d'implémentation du serveur. Nous retrouvons notamment un dossier "config" qui va permettre de gérer les informations contenues dans le dossier "config" à la racine décrit plus haut, un dossier "model" qui va servir à construire les éléments qui composent le mail, à savoir les personnes, groupes, le message et la blague. Puis, un dossier "smtp" contenant le serveur lui-même qui va se charger de construire et envoyer le mail.
 
+Pour finir, un fichier "MailRobot.java" servant à appeler tous les éléments et à effectuer l'envoi du mail.
 
-## Functional requirements
+### Instructions de configuration du serveur MockMock
 
-Your mission is to develop a client application that automatically plays pranks on a list of victims:
+Afin d'utiliser le programme dans un environnement de test sans spammer de vrais destinataires, nous allons utiliser un serveur qui va simuler les différents envois. Ce dernier se nomme MockMock, dont le `.jar ` est disponible dans le dossier Docker.
 
-* The user should be able to **define a list of victims** (concretely, you should be able to create a file containing a list of e-mail addresses).
-* The user should be able to **define how many groups of victims should be formed** in a given campaign. In every group of victims, there should be 1 sender and at least 2 recipients (i.e. the minimum size for a group is 3).
-* The user should be able to **define a list of e-mail messages**. When a prank is played on a group of victims, then one of these messages should be selected. **The mail should be sent to all group recipients, from the address of the group sender**. In other words, the recipient victims should be lead to believe that the sender victim has sent them.
+Puis, ouvrez un terminal docker et positionnez-vous dans le dossier Docker contenant le fichier "Dockerfile". Tapez ensuite la commande: `docker build -t mockmock .` . On va ici construire l'image nommé "mockmock" à partir du fichier Dockerfile.
 
-## Constraints
+Ensuite, tapez la commande qui suit: `docker run --name mockmock -it -p 25:25 -p 8282:8282 mockmock /bin/bash`. On va donc démarrer le conteneur nommé "mockmock" avec l'image construite en ouvrant un shell dessus et on mappant les ports 25 et 8282 à l'hôte afin d'autoriser la communication du serveur MockMock sur ces ports.
 
-- The goal is for you to work at the wire protocol level (with the Socket API). Therefore, you CANNOT use a library that takes care of the protocol details. You have to work with the input and output streams.
-- The program must be configurable: the addresses, groups, messages CANNOT be hard-coded in the program and MUST be managed in config files.
+Une fois connecté au conteneur, pour démarrer le serveur, tapez: `java -jar ./opt/app/MockMock.jar` . Les informations de démarrage vont s'afficher. Pour tester que cela fonctionne, ouvrez un navigateur et tapez ce qui suit afin d'afficher l'interface de MockMock: `192.168.99.100:8282`.
 
+### Instruction de configuration du serveur SMTP
 
-## Example
+Ensuite, il vous suffira de modifier le fichier "config.properties" via un éditeur de texte et de fournir l'IP Docker (en général 192.168.99.100), le numéro de port sur lequel le serveur SMTP va envoyer les mails (par défaut le 25), le nombre de groupe que vous voudriez former pour l'envoi des mails et pour finir, les personnes que vous désirez mettre en copie caché à vos mails.
 
-Consider that your program generates a group G1. The group sender is Bob. The group recipients are Alice, Claire and Peter. When the prank is played on group G1, then your program should pick one of the fake messages. It should communicate with an SMTP server, so that Alice, Claire and Peter receive an e-mail, which appears to be sent by Bob.
+Ensuite, il vous faudra modifier le fichier "messages.utf8" pour y inclure vos blagues qui seront ajoutées au mail envoyé. La règle pour ce fichier est la suivante: 
 
-## Teams
+​	1) La première ligne concerne le sujet de la blague et doit être bref (sur une ligne)
 
-You may work in teams of 2 students.
+​	2) La blague peut être écrite librement, avec/sans espace etc...
 
-## Deliverables
+​	3) La séparation de chaque blague se fait comme suit: retour à la ligne 2 fois, puis ajout de "==" suivi 	d'un retour à la ligne, cette dernière permettant d'écrire le sujet de la nouvelle blague
 
-You will deliver the results of your lab in a GitHub repository. You do not have a fork a specific repo, you can create one from scratch.
+Puis, modifiez le fichier "victims.utf8" en y ajoutant sur chaque ligne, les différentes personnes que vous voudriez voir apparaître dans la blague en tant qu'envoyeur ou receveurs du mail (le choix se fait automatiquement par le programme). Le nommage des adresses mails doit suivre les règles standards, à savoir: `xxx@yyy.zz`
 
-Your repository should contain both the source code of your Java project and your report. Your report should be a single `README.md` file, located at the root of your repository. The images should be placed in a `figures` directory.
+Pour finir, exécutez la ligne de commande suivante en vous positionnant dans le dossier "Teaching-HEIGVD-RES-2019-Labo-SMTP » :  `java -jar ./smtpclient/target/smtpclient-1.0-SNAPSHOT-launcher.jar ./smtpclient/config/`. Vous verrez s'afficher une série de message. Si les messages `INFOS: Envoi de mail par SMTP` et `INFOS: "numéroX" Bye` apparaissent, le serveur a bien envoyé les mails aux destinataires.
 
-Your report MUST include the following sections:
-
-* **A brief description of your project**: if people exploring GitHub find your repo, without a prior knowledge of the RES course, they should be able to understand what your repo is all about and whether they should look at it more closely.
-
-* **Instructions for setting up a mock SMTP server (with Docker)**. The user who wants to experiment with your tool but does not really want to send pranks immediately should be able to use a mock SMTP server. For people who are not familiar with this concept, explain it to them in simple terms. Explain which mock server you have used and how you have set it up.
-
-* **Clear and simple instructions for configuring your tool and running a prank campaign**. If you do a good job, an external user should be able to clone your repo, edit a couple of files and send a batch of e-mails in less than 10 minutes.
-
-* **A description of your implementation**: document the key aspects of your code. It is probably a good idea to start with a class diagram. Decide which classes you want to show (focus on the important ones) and describe their responsibilities in text. It is also certainly a good idea to include examples of dialogues between your client and an SMTP server (maybe you also want to include some screenshots here).
-## References
-
-* [MockMock server](<https://github.com/tweakers/MockMock>) on GitHub
-* The [mailtrap](<https://mailtrap.io/>) online service for testing SMTP
-* The [SMTP RFC](<https://tools.ietf.org/html/rfc5321#appendix-D>), and in particular the [example scenario](<https://tools.ietf.org/html/rfc5321#appendix-D>)
-* Testing SMTP with TLS: `openssl s_client -connect smtp.mailtrap.io:2525 -starttls smtp -crl`
+### Description de l'implémentation du serveur SMTP
 

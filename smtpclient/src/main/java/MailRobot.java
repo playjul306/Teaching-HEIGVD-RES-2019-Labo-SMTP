@@ -25,7 +25,7 @@ public class MailRobot {
         ISmtpClient client;
 
         try {
-            config = new ConfigurationManager();
+            config = new ConfigurationManager(args[0]);
             prankGenerator = new PrankGenerator(config);
             prankList = prankGenerator.generatePranks();
             client = new SmtpClient(config);
