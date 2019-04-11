@@ -45,3 +45,36 @@ Pour finir, exécutez la ligne de commande suivante en vous positionnant dans le
 
 ### Description de l'implémentation du serveur SMTP
 
+![schema-implementation](image/schema-implementation.png)
+
+#### Config
+
+`ConfigurationManager` et son interface `IConfigurationManager` permettent de récupérer les données d’un fichier de messages, ainsi que d’un fichier de victimes, tout deux en “UTF8” et de les traiter afin d’en extraire les données. Le fichier `config.properties` contient les 4 configurations suivantes :
+
+- L’adresse IP du serveur SMTP
+- Le port du serveur SMTP
+- le nombre de groupe de victimes
+- les adresses email qui se trouvent en copie
+
+#### Model
+
+Deux package sont présent dans le package model. Le premier contient les fichier `Person`, `Group` et `Message` qui permettent de définir des groupes de personnes qui seront victimes des messages (prank). Ces derniers seront définit par un destinataire, un envoyeur, un sujet, ainsi qu’un corps de texte (le message en lui même).
+
+Le second package contient les fichiers `Prank`et `PrankGenerator` qui génère une liste de « prank ». Ce dernier va utilisé la configuration faite par le fichier `ConfigurationManager` afin d’en extraire le nombre de groupe à générer pour créer le nombre de groupe avec des victimes aléatoires et préparer la liste de « prank » adéquate. C’est dans ce fichier (`PrankGenerator`) que le nombres d’email et que ceux-ci seront préparés. 
+
+#### smtp
+
+Le client `SmtpClient` et son interface `ISmtpClient` permettent l’envoie des commandes SMTP ainsi que l’envoie des messages. Le client SMTP prend en paramètre la configuration faite par le fichier `ConfigurationManager` afin d’en extraire l’adresse IP du serveur, ainsi que le port de ce dernier pour la création du Socket.
+
+Voici un exemple de l’application en fonction :
+
+- Ici, il s’agit des informations fournies par le client SMTP lors de l’envoie d’emails.
+
+  ![smtp-result](image/smtp-result.png)
+
+- Ici, un exemple du résultat sur le serveur MockMock (executé sur un conteneur docker)
+
+  ![mockmock-result-1](image/mockmock-result-1.png)
+
+  ![mockmock-result-2](image/mockmock-result-2.png)
+
