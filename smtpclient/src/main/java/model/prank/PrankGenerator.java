@@ -88,6 +88,7 @@ public class PrankGenerator {
 
         int tmpNbGroups = nbGroups;
         List<Person> listOfPerson = victims.getMember();
+        double sizeOfListOfPerson = listOfPerson.size();
 
         // La liste des groupes est initialisée
         for(int i = 0; i < nbGroups; ++i){
@@ -100,7 +101,7 @@ public class PrankGenerator {
             int choice = r.nextInt(groups.size());
 
             // Permet de vérifier si un groupe est plein ou non
-            while(groups.get(choice).getSize() >= (listOfPerson.size()/tmpNbGroups)) {
+            while(groups.get(choice).getSize() >= (sizeOfListOfPerson/tmpNbGroups)) {
                 // Le groupe plein est ajouté à la liste puis supprimé de la liste temporaire
                 listOfGroups.add(groups.get(choice));
                 groups.remove(choice);

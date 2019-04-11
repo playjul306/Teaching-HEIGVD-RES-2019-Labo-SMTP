@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IConfigurationManager {
 
-    String defaultConfigPath = "../smtpclient/config/";
+    String defaultConfigPath = "./config/";
 
     // Informations venant du fichier de configuration
     String field_smtpServerAddress = "smtpServerAddress";
