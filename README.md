@@ -5,25 +5,27 @@ Date: 11-04-2019
 
 ### Information importante pour les manipulations
 
-Ce document permet  à n'importe quel utilisateur de pouvoir mettre en place un serveur de test MockMock ainsi qu'un serveur d'envoi SMTP. En revanche, nous partons du principe que toute personne désirant effectuer l'installation complète possède et maîtrise les environnements Intellij, Github et Docker.
+Ce document permet à n'importe quel utilisateur de pouvoir mettre en place un serveur de test MockMock ainsi qu'un serveur d'envoi SMTP. En revanche, nous partons du principe que toute personne désirant effectuer l'installation complète possède et maîtrise les environnements Intellij, Github et Docker.
 
-De plus, il faut avoir préparé l’environnement de travail au préalable en ayant cloner ou télécharger le dossier GitHub "Teaching-HEIGVD-RES-2019-Labo-SMTP" via le lien Github qui va été fourni. Puis, créez un projet Maven sur la base de ce dernier. 
+De plus, il faut avoir préparé l’environnement de travail au préalable en ayant cloné ou téléchargé le dossier GitHub "Teaching-HEIGVD-RES-2019-Labo-SMTP" via le lien Github qui vous a été fourni. Puis, créez un projet Maven sur la base de ce dernier. 
 
 ### Description du laboratoire
 
- Le repo principal du serveur SMTP contient 2 dossiers pour le bon fonctionnement de ce dernier. Tout d'abord, un dossier config contenant un fichier du même nom permettant de configurer le serveur SMTP et 2 autres fichiers allant servir de base pour la construction d'une blague à envoyer à des destinataires.
+Le repo principal du serveur SMTP contient 2 dossiers pour le bon fonctionnement de ce dernier. Tout d'abord, un dossier config contenant un fichier du même nom permettant de configurer le serveur SMTP et 2 autres fichiers allant servir de base pour la construction d'une blague à envoyer à des destinataires.
 
-Puis, dans un second temps, le dossier "src/main/java" qui contient tous fichiers d'implémentation du serveur. Nous retrouvons notamment un dossier "config" qui va permettre de gérer les informations contenues dans le dossier "config" à la racine décrit plus haut, un dossier "model" qui va servir à construire les éléments qui composent le mail, à savoir les personnes, groupes, le message et la blague. Puis, un dossier "smtp" contenant le serveur lui-même qui va se charger de construire et envoyer le mail.
+Puis, dans un second temps, le dossier "src/main/java" qui contient tous fichiers d'implémentation du serveur. Nous retrouvons notamment un dossier "config" qui va permettre de gérer les informations contenues dans le dossier "config" à la racine décrite plus haut, un dossier "model" qui va servir à construire les éléments qui composent le mail, à savoir les personnes, groupes, le message et la blague. Puis, un dossier "smtp" contenant le serveur lui-même qui va se charger de construire et envoyer le mail.
 
 Pour finir, un fichier "MailRobot.java" servant à appeler tous les éléments et à effectuer l'envoi du mail.
 
 ### Instructions de configuration du serveur MockMock
 
-Afin d'utiliser le programme dans un environnement de test sans spammer de vrais destinataires, nous allons utiliser un serveur qui va simuler les différents envois. Ce dernier se nomme MockMock, dont le `.jar ` est disponible dans le dossier Docker.
+Afin d'utiliser le programme dans un environnement de test sans spammer de vrais destinataires, nous allons utiliser un serveur qui va simuler les différents envois. Ce dernier se nomme MockMock dont le `.jar ` est disponible dans le dossier Docker.
 
 Puis, ouvrez un terminal docker et positionnez-vous dans le dossier Docker contenant le fichier "Dockerfile". Tapez ensuite la commande: `docker build -t mockmock .` . On va ici construire l'image nommé "mockmock" à partir du fichier Dockerfile.
 
+
 Ensuite, tapez la commande qui suit: `docker run --name mockmock -d -p 25:25 -p 8282:8282 mockmock`. On va donc démarrer le conteneur nommé "mockmock" avec l'image construite en executant la commande `java -jar ./opt/app/MockMock.jar` dessus et on mappant les ports 25 et 8282 à l'hôte afin d'autoriser la communication du serveur MockMock sur ces ports.
+
 
 Pour tester que cela fonctionne, ouvrez un navigateur et tapez ce qui suit afin d'afficher l'interface de MockMock: `192.168.99.100:8282`.
 
@@ -58,9 +60,9 @@ Pour finir, exécutez la ligne de commande suivante en vous positionnant dans le
 
 #### Model
 
-Deux package sont présent dans le package model. Le premier contient les fichier `Person`, `Group` et `Message` qui permettent de définir des groupes de personnes qui seront victimes des messages (prank). Ces derniers seront définit par un destinataire, un envoyeur, un sujet, ainsi qu’un corps de texte (le message en lui même).
+Deux packages sont présents dans le package model. Le premier contient les fichier `Person`, `Group` et `Message` qui permettent de définir des groupes de personnes qui seront victimes des messages (prank). Ces derniers seront défini par un destinataire, un envoyeur, un sujet, ainsi qu’un corps de texte (le message en lui même).
 
-Le second package contient les fichiers `Prank`et `PrankGenerator` qui génère une liste de « prank ». Ce dernier va utilisé la configuration faite par le fichier `ConfigurationManager` afin d’en extraire le nombre de groupe à générer pour créer le nombre de groupe avec des victimes aléatoires et préparer la liste de « prank » adéquate. C’est dans ce fichier (`PrankGenerator`) que le nombres d’email et que ceux-ci seront préparés. 
+Le second package contient les fichiers `Prank`et `PrankGenerator` qui génère une liste de « prank ». Ce dernier va utilisé la configuration faite par le fichier `ConfigurationManager` afin d’en extraire le nombre de groupe à générer pour créer le nombre de groupe avec des victimes aléatoires et préparer la liste de «prank » adéquate. C’est dans ce fichier (`PrankGenerator`) que le nombres d’email et que ceux-ci seront préparés. 
 
 #### smtp
 
@@ -72,7 +74,7 @@ Voici un exemple de l’application en fonction :
 
   ![smtp-result](image/smtp-result.png)
 
-- Ici, un exemple du résultat sur le serveur MockMock (executé sur un conteneur docker)
+- Ici, un exemple du résultat sur le serveur MockMock (exécuté sur un conteneur docker)
 
   ![mockmock-result-1](image/mockmock-result-1.png)
 
