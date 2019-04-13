@@ -23,9 +23,11 @@ Afin d'utiliser le programme dans un environnement de test sans spammer de vrais
 
 Puis, ouvrez un terminal docker et positionnez-vous dans le dossier Docker contenant le fichier "Dockerfile". Tapez ensuite la commande: `docker build -t mockmock .` . On va ici construire l'image nommé "mockmock" à partir du fichier Dockerfile.
 
-Ensuite, tapez la commande qui suit: `docker run --name mockmock -it -p 25:25 -p 8282:8282 mockmock /bin/bash`. On va donc démarrer le conteneur nommé "mockmock" avec l'image construite en ouvrant un shell dessus et en mappant les ports 25 et 8282 à l'hôte afin d'autoriser la communication du serveur MockMock sur ces ports.
 
-Une fois connecté au conteneur, pour démarrer le serveur, tapez: `java -jar ./opt/app/MockMock.jar` . Les informations de démarrage vont s'afficher. Pour tester que cela fonctionne, ouvrez un navigateur et tapez ce qui suit afin d'afficher l'interface de MockMock: `192.168.99.100:8282`.
+Ensuite, tapez la commande qui suit: `docker run --name mockmock -d -p 25:25 -p 8282:8282 mockmock`. On va donc démarrer le conteneur nommé "mockmock" avec l'image construite en executant la commande `java -jar ./opt/app/MockMock.jar` dessus et on mappant les ports 25 et 8282 à l'hôte afin d'autoriser la communication du serveur MockMock sur ces ports.
+
+
+Pour tester que cela fonctionne, ouvrez un navigateur et tapez ce qui suit afin d'afficher l'interface de MockMock: `192.168.99.100:8282`.
 
 ### Instruction de configuration du serveur SMTP
 
